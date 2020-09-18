@@ -32,3 +32,41 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
 });
+
+window.onload = function () {
+  var tilePath = 'wmts/epsg3857/best/' +
+    'MODIS_Terra_CorrectedReflectance_TrueColor/default/' +
+    '2018-06-01/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg';
+
+  // Add token here when using Mapbox layers
+  mapboxgl.accessToken = 'undefined';
+
+  new mapboxgl.Map({
+    container: 'map',
+    style: {
+      version: 8,
+      sources: {
+        gibs: {
+          type: 'raster',
+          tiles: [
+            '//gibs-a.earthdata.nasa.gov/' + tilePath,
+            '//gibs-b.earthdata.nasa.gov/' + tilePath,
+            '//gibs-c.earthdata.nasa.gov/' + tilePath
+          ],
+          tileSize: 256
+        }
+      },
+      layers: [{
+        id: 'gibs',
+        type: 'raster',
+        source: 'gibs',
+        minzoom: 0,
+        maxzoom: 8
+      }]
+    },
+    center: [0, 0],
+    minZoom: 0,
+    maxZoom: 7,
+    zoom: 2
+  });
+};

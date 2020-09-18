@@ -9,12 +9,25 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='example.css' />
+
+    <script type='text/javascript' src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <script src='webmercator-epsg3857.js'></script>
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+  <%= render 'shared/navbar' %>
 
-    <%= yield %>
+  <div id='map'></div>
+  <div id='attribution'>
+    <a href='http://mapbox.com'>Mapbox</a>
+    <a href='https://wiki.earthdata.nasa.gov/display/GIBS'>NASA EOSDIS GIBS</a>
+    <a href='https://github.com/nasa-gibs/web-examples/blob/master/examples/mapbox-gl/webmercator-epsg3857.js'>
+      View Source
+    </a>
+  </div>
+
+  <%= render 'shared/flashes' %>
   </body>
 </html>
